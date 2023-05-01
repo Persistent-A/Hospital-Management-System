@@ -4,18 +4,31 @@
   "description": "Appointment accessibility for patients and doctors",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "author": "Apurva & Minesh",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/material": "^5.12.2",
+    "@mui/styled-engine-sc": "^5.12.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-router-dom": "^6.11.0",
+    "styled-components": "^5.3.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
