@@ -56,10 +56,10 @@ const registerDoctor = asyncHandler (async (req, res) => {
 //@access Public
 
 const loginDoctor = asyncHandler (async (req, res) => {
+    console.log(req.body)
     const {employee_id, password} = req.body
 
     const doctor = await Doctor.findOne({employee_id})
-
     if(doctor && (await bcrypt.compare(password, doctor.password))){
         res.json({
             _id: doctor.id,
