@@ -33,7 +33,7 @@ const PatientDetailsCard = ({appointment, selectedDate}) => {
         <Typography variant="body2">
           <BsCalendarDateFill onClick={() => toggleReminder(appointment.id)}/>
           <br />
-          {isRescheduled && <ReSchedule appointment={appointment} selectedDate={selectedDate}/>}
+          {isRescheduled && <ReSchedule toggleReminder={toggleReminder} appointment={appointment} selectedDate={selectedDate}/>}
         </Typography>
       </CardContent>
     </Card>

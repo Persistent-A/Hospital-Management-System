@@ -1,31 +1,32 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { changeAppointmentDate } from '../features/auth/authSlice'
-import Button from '@mui/material/Button'
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeAppointmentDate } from "../features/auth/authSlice";
+import { doctorsAppointments } from "../features/auth/authSlice";
 
-const ReSchedule = ({appointment, selectedDate}) => {
-    const [reDate, setReDate] = useState()
-    
-    // const navigate = useNavigate()
-    const dispatch = useDispatch()
-    
-    const reSchedule = (e) => {
-      e.preventDefault()
-      const updatedAppointment = {
-        ...appointment,
-        date: reDate
-      }
-      dispatch(changeAppointmentDate(updatedAppointment))
-    }
+const ReSchedule = ({ appointment, selectedDate }) => {
+  const [reDate, setReDate] = useState(selectedDate);
 
+  // const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  const reSchedule = (e) => {
+    setReDate(e.target.value);
+    const updatedAppointment = {
+      ...appointment,
+      date: e.target.value,
+    };
+    dispatch(changeAppointmentDate(updatedAppointment));
+    dispatch(doctorsAppointments(selectedDate));
+  };
 
   return (
-    <form onSubmit={reSchedule}>
+    <form>
       <label>Select date to reschedule the appoinment: </label>
-      <input type="date" value={reDate} onChange={(e)=>setReDate(e.target.value)}/>
-      <Button size='small' variant="contained" color="primary" type='submit'>Reschedule</Button> 
+      <div>
+        <input type="date" value={reDate} onChange={reSchedule} />
+      </div>
     </form>
-  )
-}
+  );
+};
 
-export default ReSchedule
+export default ReSchedule;
