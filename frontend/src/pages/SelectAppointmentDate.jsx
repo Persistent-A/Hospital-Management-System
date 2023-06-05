@@ -14,7 +14,7 @@ import CardContent from "@mui/material/CardContent";
 // import Scrollbars from "react-custom-scrollbars";
 
 function SelectAppointmentDate() {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState("2023-06-04");
   const dispatch = useDispatch();
   const { doctor, appointments } = useSelector((state) => state.auth);
   const [allAppointments, setAllAppointments] = useState([]);
