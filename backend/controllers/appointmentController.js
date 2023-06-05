@@ -22,7 +22,7 @@ const getAppointments = asyncHandler(async (req, res) => {
 });
 
 const setAppointment = asyncHandler(async (req, res) => {
-  // console.log(req.body)
+  console.log(req.body);
   if (!req.body) {
     res.status(400);
     throw new Error("Please add all the fields");
@@ -35,9 +35,10 @@ const setAppointment = asyncHandler(async (req, res) => {
     email: req.body.email,
     address: req.body.address,
     date: req.body.date,
+    time: req.body.time,
     department: req.body.department,
   });
-
+  console.log(appointment);
   res.status(200).json(appointment);
 });
 

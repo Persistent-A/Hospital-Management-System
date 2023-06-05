@@ -25,7 +25,6 @@ const PatientDetailsCard = ({ appointment, selectedDate }) => {
         minWidth: 265,
         margin: { xs: "5px", sm: "20px" },
         backgroundColor: isRescheduled ? "#f59c42" : "#efcc4f",
-        // color: isRescheduled ? "white" : "black",
       }}
     >
       <CardContent>
@@ -33,6 +32,7 @@ const PatientDetailsCard = ({ appointment, selectedDate }) => {
           Name: {appointment.name}{" "}
           <FaCheck
             style={{ float: "right", cursor: "pointer" }}
+            className="check-btn"
             onClick={() =>
               dispatch(
                 changeAppointmentDate({

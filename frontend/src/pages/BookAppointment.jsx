@@ -28,10 +28,11 @@ function BookAppointment() {
     email: "",
     address: "",
     date: "",
+    time: "",
     department: "",
   });
 
-  const { name, age, phone, email, address, date, department } = formData;
+  const { name, age, phone, email, address, date, time, department } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ function BookAppointment() {
         email: "",
         address: "",
         date: "",
+        time: "",
         department: "",
       });
       dispatch(reset());
@@ -106,6 +108,7 @@ function BookAppointment() {
         phone,
         email,
         address,
+        time,
         date,
         department,
       };
@@ -223,7 +226,7 @@ function BookAppointment() {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  width: "80%",
+                  width: "100%",
                 }}
               >
                 <label>Select Date: </label>
@@ -241,7 +244,26 @@ function BookAppointment() {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "80%",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <label>Select Time: </label>
+                <TextField
+                  variant="standard"
+                  type="time"
+                  id="time"
+                  name="time"
+                  value={time}
+                  placeholder="Select date"
+                  onChange={onChange}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
                   marginTop: "10px",
                 }}
               >

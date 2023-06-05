@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import BookAppointment from "./pages/BookAppointment";
 import Footer from "./components/Footer";
 import SelectAppointmentDate from "./pages/SelectAppointmentDate";
-import Calendar from "./components/Calendar";
+// import Calendar from "./components/Calendar";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
             path="/select_appointment_date"
             element={<SelectAppointmentDate />}
           />
-          <Route path="/calendar" element={<Calendar />} />
+          {/* <Route path="/calendar" element={<Calendar />} /> */}
         </Routes>
         <Footer />
       </Router>
