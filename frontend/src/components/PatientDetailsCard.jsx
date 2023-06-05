@@ -24,7 +24,8 @@ const PatientDetailsCard = ({ appointment, selectedDate }) => {
       sx={{
         minWidth: 265,
         margin: { xs: "5px", sm: "20px" },
-        backgroundColor: isRescheduled ? "green" : "#efcc4f",
+        backgroundColor: isRescheduled ? "#f59c42" : "#efcc4f",
+        // color: isRescheduled ? "white" : "black",
       }}
     >
       <CardContent>
