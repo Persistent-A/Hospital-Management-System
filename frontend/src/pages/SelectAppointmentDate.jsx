@@ -11,7 +11,6 @@ import Container from "@mui/material/Container";
 import Calendar from "../components/Calendar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-// import Scrollbars from "react-custom-scrollbars";
 
 function SelectAppointmentDate() {
   const [selectedDate, setSelectedDate] = useState("");
@@ -38,9 +37,11 @@ function SelectAppointmentDate() {
     dispatch(doctorsAppointments({ date: e.target.value }));
   };
 
+  
+
   const theme = createTheme();
   return (
-    <div style={{ eight: "70vh" }}>
+    <div style={{ minHeight: "70vh" }}>
       <ThemeProvider theme={theme}>
         <Container
           component="main"
@@ -48,19 +49,12 @@ function SelectAppointmentDate() {
           sx={{
             display: "flex",
             flexDirection: "row",
-            // alignItems: "center",
             justifyContent: "space-evenly",
             minHeight: "90vh",
-            position: "relative",
           }}
         >
           <CssBaseline />
           <Box
-          // sx={{
-          //   display: "flex",
-          //   flexDirection: "column",
-          //   alignItems: "center",
-          // }}
           >
             <Box component="form" noValidate sx={{ mt: 1 }}>
               <Typography
@@ -86,46 +80,62 @@ function SelectAppointmentDate() {
                 <input type="date" value={selectedDate} onChange={selectDate} />
               </Typography>
             </Box>
-
-            <Box
-              sx={{
+            <div
+              style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 marginTop: "2rem",
-                maxHeight: "600px",
+                maxHeight: "60vh",
                 overflow: "auto",
               }}
             >
-              {appointments[0] ? (
-                <Card sx={{ width: "400px", overflow: "hidden" }}>
-                  {/* <Scrollbars style={{ width: "100%", height: "300px" }}> */}
-                  <CardContent>
-                    {appointments.map((appointment) => (
-                      <PatientDetailsCard
-                        key={appointment.id}
-                        appointment={appointment}
-                        selectedDate={selectedDate}
-                      />
-                    ))}
-                  </CardContent>
-                  {/* </Scrollbars> */}
-                </Card>
-              ) : selectedDate === "" ? null : (
-                <Typography>
-                  No Appointments for the date: {selectedDate}
-                </Typography>
-              )}
-            </Box>
+              <Box>
+                {appointments[0] ? (
+                  <Card sx={{ width: "450px" }}>
+                    <CardContent>
+                      {appointments.map((appointment) => (
+                        <PatientDetailsCard
+                          key={appointment.id}
+                          appointment={appointment}
+                          selectedDate={selectedDate}
+                        />
+                      ))}
+                    </CardContent>
+                  </Card>
+                ) : selectedDate === "" ? null : (
+                  <Typography>
+                    No Appointments for the date: {selectedDate}
+                  </Typography>
+                )}
+              </Box>
+              <style>
+                {`
+                  div::-webkit-scrollbar {
+                    width: 8px;
+                  }
+                
+                  div::-webkit-scrollbar-thumb {
+                    background-color: #888;
+                    border-radius: 4px;
+                  }
+                
+                  div::-webkit-scrollbar-thumb:hover {
+                    background-color: #555;
+                  }
+                  `}
+              </style>
+            </div>
           </Box>
+
           <div
             style={{
               position: "sticky",
-              top: "1200px",
-              border: "1px solid red",
+              height: "45vh",
+              top: "100px",
             }}
           >
-            <Calendar allAppointments={allAppointments} />
+            <Calendar allAppointments={allAppointments} onDateClick={setSelectedDate}/>
           </div>
         </Container>
       </ThemeProvider>

@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
-const Calendar = ({ allAppointments }) => {
+const Calendar = ({ allAppointments}) => {
   const appointmentsByDay = {};
 
   // Count appointments for each day
@@ -29,6 +29,9 @@ const Calendar = ({ allAppointments }) => {
     count: count,
     start: date,
   }));
+
+  
+  
 
   return (
     <div>
