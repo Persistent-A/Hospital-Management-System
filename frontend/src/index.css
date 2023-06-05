@@ -16,3 +16,12 @@
 body {
   overflow: auto;
 }
+
+.calendar-count:hover {
+  cursor: pointer;
+}
+
+.check-btn:hover {
+  cursor: pointer;
+  color: white;
+}
