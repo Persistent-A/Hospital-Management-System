@@ -6,6 +6,7 @@ const Doctor = require("../model/doctorModel");
 const getAllAppointments = asyncHandler(async (req, res) => {
   const appointments = await Appointment.find({
     department: req.doctor.department,
+    isComplete: false,
   });
   res.status(200).json(appointments);
 });
@@ -13,12 +14,11 @@ const getAllAppointments = asyncHandler(async (req, res) => {
 const getAppointments = asyncHandler(async (req, res) => {
   const appointments = await Appointment.find({
     department: req.doctor.department,
+    date: req.body.date,
+    isComplete: false,
   });
-  console.log(req.body.date);
-  const filteredAppointments = appointments.filter(
-    (appointment) => appointment.date === req.body.date
-  );
-  res.status(200).json(filteredAppointments);
+
+  res.status(200).json(appointments);
 });
 
 const setAppointment = asyncHandler(async (req, res) => {

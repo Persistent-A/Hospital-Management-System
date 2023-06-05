@@ -51,6 +51,24 @@ export const changeAppointmentDate = createAsyncThunk(
   }
 );
 
+// const completeAppointment = createAsyncThunk(
+//   "auth/complete_appointment",
+//   async (updatedAppointment, thunkAPI) => {
+//     try {
+//       const token = await thunkAPI.getState().auth.doctor.token;
+//       return await authService.changeAppointmentDate(updatedAppointment, token);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
+
 //Get Specific Doctor's Appointments
 export const doctorsAppointments = createAsyncThunk(
   "auth/getDoctorsAppointment",
@@ -144,7 +162,7 @@ export const authSlice = createSlice({
       .addCase(bookAppointment.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.appointments.push(action.payload);
+        // state.appointments.push(action.payload);
       })
       .addCase(bookAppointment.rejected, (state, action) => {
         state.isLoading = false;
@@ -206,7 +224,11 @@ export const authSlice = createSlice({
         console.log(action.payload);
         state.appointments = state.appointments.map((appointment) =>
           appointment._id === action.payload._id
-            ? { ...appointment, date: action.payload.date }
+            ? {
+                ...appointment,
+                date: action.payload.date,
+                isComplete: action.payload.isComplete,
+              }
             : appointment
         );
       })
