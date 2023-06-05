@@ -3,6 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
+
 const Calendar = ({ allAppointments, fromCalendar }) => {
   const appointmentsByDay = {};
 
@@ -44,6 +45,9 @@ const Calendar = ({ allAppointments, fromCalendar }) => {
         initialView="dayGridMonth"
         events={events}
         eventContent={eventContent}
+        // selectable={true}
+        // select={handleDate}
+        // eventClick={handleClick}
       />
     </div>
   );
