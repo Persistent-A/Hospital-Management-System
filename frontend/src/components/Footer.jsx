@@ -18,7 +18,7 @@ function Footer() {
                     <Grid item xs={12} sm={6}>
                         <Box borderBottom={1} textAlign="center">Follow Us</Box>
                         <Box textAlign="center" sx={{cursor:"pointer", color: "violet"}}>
-                            <FacebookIcon/> <InstagramIcon/> <TwitterIcon/>
+                            <a href="https://www.facebook.com/tavcollege/"><FacebookIcon/></a> <a href="https://www.instagram.com/tavcollege/?hl=en"><InstagramIcon/></a> <a href="https://twitter.com/tavcollege?lang=en"><TwitterIcon/></a>
                         </Box>
                         
                     </Grid>
