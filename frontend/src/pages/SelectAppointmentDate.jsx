@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { doctorsAppointments } from "../features/auth/authSlice";
-import axios from "axios";
-// import { useNavigate } from 'react-router-dom'
 import PatientDetailsCard from "../components/PatientDetailsCard";
-// import Button from "@mui/material/Button";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Calendar from "../components/Calendar";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+// import Scrollbars from "react-custom-scrollbars";
 
 function SelectAppointmentDate() {
   const [selectedDate, setSelectedDate] = useState("");
-  // const [date, setDate] = useState("");
-  // const navigate = useNavigate()
   const dispatch = useDispatch();
   const { doctor, appointments } = useSelector((state) => state.auth);
   const [allAppointments, setAllAppointments] = useState([]);
@@ -41,28 +40,27 @@ function SelectAppointmentDate() {
 
   const theme = createTheme();
   return (
-    <div style={{ minHeight: "70vh" }}>
+    <div style={{ eight: "70vh" }}>
       <ThemeProvider theme={theme}>
         <Container
           component="main"
           maxWidth="s"
           sx={{
-            // marginTop: 1,
             display: "flex",
             flexDirection: "row",
-            alignItems: "center",
+            // alignItems: "center",
             justifyContent: "space-evenly",
             minHeight: "90vh",
+            position: "relative",
           }}
         >
           <CssBaseline />
           <Box
-            sx={{
-              // marginTop: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+          // sx={{
+          //   display: "flex",
+          //   flexDirection: "column",
+          //   alignItems: "center",
+          // }}
           >
             <Box component="form" noValidate sx={{ mt: 1 }}>
               <Typography
@@ -76,12 +74,12 @@ function SelectAppointmentDate() {
               <Typography
                 sx={{
                   fontSize: { xs: "17px", sm: "25px", md: "25px" },
-                  margin: { sm: "auto" },
+                  margin: "auto",
                   marginTop: { xs: "25px", sm: "25px", md: "45px" },
-                  display: { sm: "flex" },
-                  justifyContent: { sm: "space-between" },
-                  alignItems: { sm: "center" },
-                  width: { sm: "60%" },
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "60%",
                 }}
               >
                 <label>Select date of appointment:</label>
@@ -92,32 +90,43 @@ function SelectAppointmentDate() {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
+                flexDirection: "column",
+                alignItems: "center",
+                marginTop: "2rem",
+                maxHeight: "600px",
+                overflow: "auto",
               }}
             >
-              {appointments[0]
-                ? appointments.map((appointment) => (
-                    <PatientDetailsCard
-                      key={appointment.id}
-                      appointment={appointment}
-                      selectedDate={selectedDate}
-                    />
-                  ))
-                : selectedDate === ""
-                ? ""
-                : `No Appointments for the date: ${selectedDate}`}
+              {appointments[0] ? (
+                <Card sx={{ width: "400px", overflow: "hidden" }}>
+                  {/* <Scrollbars style={{ width: "100%", height: "300px" }}> */}
+                  <CardContent>
+                    {appointments.map((appointment) => (
+                      <PatientDetailsCard
+                        key={appointment.id}
+                        appointment={appointment}
+                        selectedDate={selectedDate}
+                      />
+                    ))}
+                  </CardContent>
+                  {/* </Scrollbars> */}
+                </Card>
+              ) : selectedDate === "" ? null : (
+                <Typography>
+                  No Appointments for the date: {selectedDate}
+                </Typography>
+              )}
             </Box>
           </Box>
-          <Box
-            sx={{
-              marginTop: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+          <div
+            style={{
+              position: "sticky",
+              top: "1200px",
+              border: "1px solid red",
             }}
           >
             <Calendar allAppointments={allAppointments} />
-          </Box>
+          </div>
         </Container>
       </ThemeProvider>
     </div>

@@ -27,8 +27,8 @@ const PatientDetailsCard = ({appointment, selectedDate}) => {
         <Typography variant="h6" component="div">
           Age: {appointment.age}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Email_Address: {appointment.email}
+        <Typography sx={{ mb: 1.5, fontWeight: "bold" }} color="text.secondary">
+          Email: {appointment.email}
         </Typography>
         <Typography variant="body2">
           <BsCalendarDateFill onClick={() => toggleReminder(appointment.id)}/>
