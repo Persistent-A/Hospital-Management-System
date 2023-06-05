@@ -1,14 +1,18 @@
-*{
+* {
   box-sizing: border-box; /* To prevent border collapse. */
   margin: 0;
   padding: 0;
   text-decoration: none; /* To remove any decoration in the text. */
-  list-style: none; 
+  list-style: none;
 }
-.images{
+.images {
   background-image: url("./Images/pexels-jonathan-borba-13697925.jpg");
-  background-repeat: no-repeat;   
+  background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
   height: 100vh;
+}
+
+body {
+  overflow: auto;
 }

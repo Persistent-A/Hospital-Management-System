@@ -1,21 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
-// import '@fullcalendar/core/main.css';
-// import '@fullcalendar/daygrid/main.css';
-// import '@fullcalendar/timegrid/main.css';
+const Calendar = ({ allAppointments }) => {
+  const appointmentsByDay = {};
 
-const Calendar = ({allAppointments}) => {
-  const events = allAppointments.map((appointment) => {
-    return { title: appointment.name, start: appointment.date };
+  // Count appointments for each day
+  allAppointments.forEach((appointment) => {
+    const appointmentDate = appointment.date;
+    if (appointmentsByDay[appointmentDate]) {
+      appointmentsByDay[appointmentDate]++;
+    } else {
+      appointmentsByDay[appointmentDate] = 1;
+    }
   });
 
-  //   const events = [
-  //     { title: "Event 1", start: "2023-06-01" },
-  //     { title: "Event 2", start: "2023-06-03" },
-  //   ];
+  const eventContent = (arg) => {
+    return (
+      <>
+        <div style={{textAlign:"center"}}>{arg.event.extendedProps.count}</div>
+      </>
+    );
+  };
+
+  const events = Object.entries(appointmentsByDay).map(([date, count]) => ({
+    title: "",
+    count: count,
+    start: date,
+  }));
 
   return (
     <div>
@@ -23,6 +36,7 @@ const Calendar = ({allAppointments}) => {
         plugins={[dayGridPlugin, timeGridPlugin]}
         initialView="dayGridMonth"
         events={events}
+        eventContent={eventContent}
       />
     </div>
   );
