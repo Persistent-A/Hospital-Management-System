@@ -37,7 +37,9 @@ function SelectAppointmentDate() {
     dispatch(doctorsAppointments({ date: e.target.value }));
   };
 
-  
+  const handleEventClick = (clickInfo) => {
+    console.log("clickInfo", clickInfo);
+  };
 
   const theme = createTheme();
   return (
@@ -54,8 +56,7 @@ function SelectAppointmentDate() {
           }}
         >
           <CssBaseline />
-          <Box
-          >
+          <Box>
             <Box component="form" noValidate sx={{ mt: 1 }}>
               <Typography
                 sx={{
@@ -135,7 +136,11 @@ function SelectAppointmentDate() {
               top: "100px",
             }}
           >
-            <Calendar allAppointments={allAppointments} onDateClick={setSelectedDate}/>
+            <Calendar
+              allAppointments={allAppointments}
+              onDateClick={setSelectedDate}
+              handleEventClick={handleEventClick}
+            />
           </div>
         </Container>
       </ThemeProvider>

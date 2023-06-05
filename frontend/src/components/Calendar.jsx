@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
-const Calendar = ({ allAppointments}) => {
+const Calendar = ({ allAppointments, handleEventClick }) => {
   const appointmentsByDay = {};
 
   // Count appointments for each day
@@ -19,7 +19,9 @@ const Calendar = ({ allAppointments}) => {
   const eventContent = (arg) => {
     return (
       <>
-        <div style={{textAlign:"center"}}>{arg.event.extendedProps.count}</div>
+        <div style={{ textAlign: "center" }}>
+          {arg.event.extendedProps.count}
+        </div>
       </>
     );
   };
@@ -30,8 +32,9 @@ const Calendar = ({ allAppointments}) => {
     start: date,
   }));
 
-  
-  
+  const handleClick = (eventInfo) => {
+    handleEventClick(eventInfo);
+  };
 
   return (
     <div>
@@ -40,6 +43,9 @@ const Calendar = ({ allAppointments}) => {
         initialView="dayGridMonth"
         events={events}
         eventContent={eventContent}
+        // selectable={true}
+        // select={handleDate}
+        // eventClick={handleClick}
       />
     </div>
   );
