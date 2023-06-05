@@ -14,6 +14,7 @@ const getAppointments = asyncHandler(async (req, res) => {
   const appointments = await Appointment.find({
     department: req.doctor.department,
   });
+  console.log(req.body.date);
   const filteredAppointments = appointments.filter(
     (appointment) => appointment.date === req.body.date
   );

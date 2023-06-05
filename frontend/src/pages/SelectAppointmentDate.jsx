@@ -13,7 +13,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 function SelectAppointmentDate() {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState("2023-06-04");
   const dispatch = useDispatch();
   const { doctor, appointments } = useSelector((state) => state.auth);
   const [allAppointments, setAllAppointments] = useState([]);
