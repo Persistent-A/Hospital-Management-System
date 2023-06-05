@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { doctorsAppointments } from "../features/auth/authSlice";
 import PatientDetailsCard from "../components/PatientDetailsCard";
@@ -13,10 +13,23 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 function SelectAppointmentDate() {
-  const [selectedDate, setSelectedDate] = useState("");
+  const inputRef = useRef(null);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+
+  const fromCalendar = (date) => {
+    const selectedDate = date.toISOString().split("T")[0];
+    setSelectedDate(selectedDate);
+    selectDate(selectedDate);
+  };
+
   const dispatch = useDispatch();
   const { doctor, appointments } = useSelector((state) => state.auth);
   const [allAppointments, setAllAppointments] = useState([]);
+  const appointmentToShow = appointments.filter(
+    (appointment) => appointment.isComplete === false
+  );
 
   useEffect(() => {
     const config = {
@@ -32,13 +45,9 @@ function SelectAppointmentDate() {
     getAllAppointments();
   }, [appointments, doctor, dispatch]);
 
-  const selectDate = (e) => {
-    setSelectedDate(e.target.value);
-    dispatch(doctorsAppointments({ date: e.target.value }));
-  };
-
-  const handleEventClick = (clickInfo) => {
-    console.log("clickInfo", clickInfo);
+  const selectDate = (date) => {
+    setSelectedDate(date);
+    dispatch(doctorsAppointments({ date }));
   };
 
   const theme = createTheme();
@@ -78,7 +87,12 @@ function SelectAppointmentDate() {
                 }}
               >
                 <label>Select date of appointment:</label>
-                <input type="date" value={selectedDate} onChange={selectDate} />
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => selectDate(e.target.value)}
+                  ref={inputRef}
+                />
               </Typography>
             </Box>
             <div
@@ -95,7 +109,7 @@ function SelectAppointmentDate() {
                 {appointments[0] ? (
                   <Card sx={{ width: "450px" }}>
                     <CardContent>
-                      {appointments.map((appointment) => (
+                      {appointmentToShow.map((appointment) => (
                         <PatientDetailsCard
                           key={appointment.id}
                           appointment={appointment}
@@ -138,8 +152,7 @@ function SelectAppointmentDate() {
           >
             <Calendar
               allAppointments={allAppointments}
-              onDateClick={setSelectedDate}
-              handleEventClick={handleEventClick}
+              fromCalendar={fromCalendar}
             />
           </div>
         </Container>
