@@ -22,7 +22,6 @@ const getAppointments = asyncHandler(async (req, res) => {
 });
 
 const setAppointment = asyncHandler(async (req, res) => {
-  console.log(req.body);
   if (!req.body) {
     res.status(400);
     throw new Error("Please add all the fields");
