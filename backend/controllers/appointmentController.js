@@ -34,9 +34,10 @@ const setAppointment = asyncHandler(async (req, res) => {
     email: req.body.email,
     address: req.body.address,
     date: req.body.date,
+    time: req.body.time,
     department: req.body.department,
   });
-
+  console.log(appointment);
   res.status(200).json(appointment);
 });
 

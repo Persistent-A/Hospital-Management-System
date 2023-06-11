@@ -26,6 +26,10 @@ const appointmentSchema = mongoose.Schema(
       type: String,
       required: [true, "Please fill this field"],
     },
+    time: {
+      type: String,
+      required: [true, "Please fill this field"],
+    },
     department: {
       type: String,
       required: [true, "Please fill this field"],
