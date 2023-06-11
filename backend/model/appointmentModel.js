@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 
 const appointmentSchema = mongoose.Schema(
   {
-    // doctor: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'User',
-    // },
     name: {
       type: String,
       required: [true, "Please fill this field"],
